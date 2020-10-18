@@ -28,6 +28,6 @@ public class MongodbApplication {
 
 	@Bean
 	public ExecutorService executorService() {
-		return Executors.newSingleThreadExecutor();
+		return Executors.newFixedThreadPool(10);
 	}
 }

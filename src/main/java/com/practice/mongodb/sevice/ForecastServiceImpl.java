@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 
+import javax.annotation.PreDestroy;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
@@ -54,6 +55,11 @@ public class ForecastServiceImpl implements ForecastService {
                 e.printStackTrace();
             }
         });
+    }
+
+    @PreDestroy
+    public void shutdownExecutor() {
+        executorService.shutdown();
     }
 
     private String getForecastURI(double lat, double lon) throws JsonProcessingException {
