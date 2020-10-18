@@ -57,6 +57,11 @@ public class ForecastServiceImpl implements ForecastService {
         });
     }
 
+    @Override
+    public Forecast getForecast(String uuid) {
+        return forecastRepository.findById(uuid).orElse(null);
+    }
+
     @PreDestroy
     public void shutdownExecutor() {
         executorService.shutdown();
