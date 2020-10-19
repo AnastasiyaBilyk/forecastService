@@ -29,5 +29,6 @@ public class ApplicationConfiguration {
         return Executors.newFixedThreadPool(10);
     }
 
+    @Bean
     public ObjectMapper objectMapper() { return new ObjectMapper();}
 }
