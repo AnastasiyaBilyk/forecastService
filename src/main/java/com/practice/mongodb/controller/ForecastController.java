@@ -21,15 +21,15 @@ public class ForecastController {
     }
 
     @GetMapping("points/{lat}/{lon}")
-    public String getForecast(@PathVariable Double lat, @PathVariable Double lon) {
-        String uuid = UUID.randomUUID().toString();
+    public UUID getForecast(@PathVariable Double lat, @PathVariable Double lon) {
+        UUID uuid = UUID.randomUUID();
         forecastService.saveForecast(lat, lon, uuid);
         return uuid;
     }
 
     @GetMapping("forecast/{uuid}")
     public ResponseEntity<Forecast> getForecast(@PathVariable String uuid) {
-        Forecast forecast = forecastService.getForecast(uuid);
+        Forecast forecast = forecastService.getForecast(UUID.fromString(uuid));
         if (forecast == null ) {
             return ResponseEntity.notFound().build();
         }

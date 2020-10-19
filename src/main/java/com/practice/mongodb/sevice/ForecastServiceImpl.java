@@ -19,6 +19,7 @@ import javax.annotation.PreDestroy;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 
 @Service
@@ -45,7 +46,7 @@ public class ForecastServiceImpl implements ForecastService {
     }
 
     @Override
-    public void saveForecast(double lat, double lon, String uuid) {
+    public void saveForecast(double lat, double lon, UUID uuid) {
         executorService.submit(() -> {
             try {
                 List<Period> periods = getPeriods(getForecastURI(lat, lon));
@@ -58,7 +59,7 @@ public class ForecastServiceImpl implements ForecastService {
     }
 
     @Override
-    public Forecast getForecast(String uuid) {
+    public Forecast getForecast(UUID uuid) {
         return forecastRepository.findById(uuid).orElse(null);
     }
 
