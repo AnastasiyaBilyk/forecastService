@@ -7,20 +7,21 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Document
 @Data
 public class Forecast {
 
     @Id
-    private String uuid;
+    private UUID uuid;
 
     @Indexed(name = "expire_after_index", expireAfter = "30m")
     private LocalDateTime creationDate = LocalDateTime.now();
 
     private List<Period> periods;
 
-    public Forecast(String uuid, List<Period> periods) {
+    public Forecast(UUID uuid, List<Period> periods) {
         this.uuid = uuid;
         this.periods = periods;
     }
