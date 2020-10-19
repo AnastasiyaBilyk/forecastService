@@ -1,5 +1,6 @@
 package com.practice.mongodb;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -27,4 +28,6 @@ public class ApplicationConfiguration {
     public ExecutorService executorService() {
         return Executors.newFixedThreadPool(10);
     }
+
+    public ObjectMapper objectMapper() { return new ObjectMapper();}
 }
