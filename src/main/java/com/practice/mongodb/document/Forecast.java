@@ -1,5 +1,6 @@
 package com.practice.mongodb.document;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Document
+@Data
 public class Forecast {
 
     @Id
@@ -22,29 +24,4 @@ public class Forecast {
         this.uuid = uuid;
         this.periods = periods;
     }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
-
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public List<Period> getPeriods() {
-        return periods;
-    }
-
-    public void setPeriods(List<Period> periods) {
-        this.periods = periods;
-    }
-
 }
