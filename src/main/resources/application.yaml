@@ -4,6 +4,7 @@ spring:
             host: localhost
             port: 27017
             database: testDB
+            auto-index-creation: true
 api:
     weather:
         host: api.weather.gov
