@@ -9,3 +9,7 @@ api:
     weather:
         host: api.weather.gov
         path: points/
+server:
+    tomcat:
+        threads:
+            max: 200

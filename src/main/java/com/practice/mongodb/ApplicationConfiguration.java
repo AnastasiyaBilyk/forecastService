@@ -1,6 +1,7 @@
 package com.practice.mongodb;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,9 @@ import java.util.concurrent.Executors;
 @Configuration
 public class ApplicationConfiguration {
 
+    @Value("${server.tomcat.threads.max}")
+    private int numberOfThreads;
+
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
 
@@ -24,7 +28,7 @@ public class ApplicationConfiguration {
 
     @Bean
     public ExecutorService executorService() {
-        return Executors.newSingleThreadExecutor();
+        return Executors.newFixedThreadPool(numberOfThreads);
     }
 
     @Bean
