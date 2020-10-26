@@ -1,4 +1,4 @@
-package com.practice.mongodb.sevice.api.client;
+package com.practice.mongodb.service.api.client;
 
 import com.practice.mongodb.document.Forecast;
 

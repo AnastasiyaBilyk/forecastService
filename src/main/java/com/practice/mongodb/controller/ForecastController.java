@@ -1,7 +1,7 @@
 package com.practice.mongodb.controller;
 
 import com.practice.mongodb.document.Forecast;
-import com.practice.mongodb.sevice.ForecastService;
+import com.practice.mongodb.service.ForecastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

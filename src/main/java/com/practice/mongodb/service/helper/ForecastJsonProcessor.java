@@ -1,4 +1,4 @@
-package com.practice.mongodb.sevice.helper;
+package com.practice.mongodb.service.helper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
