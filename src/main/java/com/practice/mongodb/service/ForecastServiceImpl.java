@@ -1,8 +1,8 @@
-package com.practice.mongodb.sevice;
+package com.practice.mongodb.service;
 
 import com.practice.mongodb.document.Forecast;
 import com.practice.mongodb.repository.ForecastRepository;
-import com.practice.mongodb.sevice.api.client.ApiWeatherClient;
+import com.practice.mongodb.service.api.client.ApiWeatherClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

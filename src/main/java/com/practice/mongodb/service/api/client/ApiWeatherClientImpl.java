@@ -1,9 +1,9 @@
-package com.practice.mongodb.sevice.api.client;
+package com.practice.mongodb.service.api.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.practice.mongodb.document.Forecast;
 import com.practice.mongodb.document.Period;
-import com.practice.mongodb.sevice.helper.ForecastJsonProcessor;
+import com.practice.mongodb.service.helper.ForecastJsonProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
