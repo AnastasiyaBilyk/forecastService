@@ -4,10 +4,9 @@ import com.practice.mongodb.document.Forecast;
 import com.practice.mongodb.service.ForecastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -21,9 +20,9 @@ public class ForecastController {
     }
 
     @GetMapping("points/{lat}/{lon}")
-    public UUID getForecast(@PathVariable Double lat, @PathVariable Double lon) {
+    public UUID getForecast(@PathVariable Double lat, @PathVariable Double lon, @RequestParam(value = "clientId") String clientId) {
         UUID uuid = UUID.randomUUID();
-        forecastService.saveForecast(lat, lon, uuid);
+        forecastService.saveForecast(lat, lon, uuid, clientId);
         return uuid;
     }
 
@@ -34,5 +33,15 @@ public class ForecastController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(forecast);
+    }
+
+    @GetMapping("/subscribe")
+    public Set<Forecast> subscribe(@RequestParam(value = "clientId") String clientId) {
+        while (true){
+            Set<Forecast> forecasts = forecastService.getForecasts(clientId);
+            if (!forecasts.isEmpty()){
+                return forecasts;
+            }
+        }
     }
 }
