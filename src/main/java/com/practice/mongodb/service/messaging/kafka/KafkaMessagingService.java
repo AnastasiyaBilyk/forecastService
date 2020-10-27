@@ -10,6 +10,7 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -35,6 +36,9 @@ public class KafkaMessagingService implements MessagingService<String, Forecast>
 
     @Override
     public Set<Forecast> getMessages(String key) {
+        if (forecastsCache.get(key) == null) {
+            return Collections.emptySet();
+        }
         Set<Forecast> forecasts = new HashSet<>(forecastsCache.get(key));
         forecastsCache.get(key).removeAll(forecasts);
         return forecasts;
