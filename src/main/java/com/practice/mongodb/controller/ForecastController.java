@@ -37,9 +37,9 @@ public class ForecastController {
 
     @GetMapping("/subscribe")
     public Set<Forecast> subscribe(@RequestParam(value = "clientId") String clientId) {
-        while (true){
+        while (true) {
             Set<Forecast> forecasts = forecastService.getForecasts(clientId);
-            if (!forecasts.isEmpty()){
+            if (!forecasts.isEmpty()) {
                 return forecasts;
             }
         }

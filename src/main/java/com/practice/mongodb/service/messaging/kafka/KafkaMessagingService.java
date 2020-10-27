@@ -30,7 +30,7 @@ public class KafkaMessagingService implements MessagingService<String, Forecast>
     @Override
     public void sendToQueue(String key, Forecast data) {
         ListenableFuture<SendResult<String, Forecast>> future = kafkaTemplate.send("forecast", key, data);
-        future.addCallback(System.out::println, System.err::println); //add logging of callbacks
+        future.addCallback(System.out::println, System.err::println); //TODO: add logging of callbacks
         kafkaTemplate.flush();
     }
 
@@ -45,7 +45,7 @@ public class KafkaMessagingService implements MessagingService<String, Forecast>
     }
 
     @KafkaListener(topics="forecast")
-    public void listenForRecords(ConsumerRecord<String, Forecast> record){
+    public void listen(ConsumerRecord<String, Forecast> record){
         Set<Forecast> forecasts = forecastsCache.get(record.key());
         if ( forecasts == null) {
             forecasts = new HashSet<>();
