@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PreDestroy;
 import java.io.IOException;
-import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 
@@ -48,11 +47,6 @@ public class ForecastServiceImpl implements ForecastService {
     @Override
     public Forecast getForecast(UUID uuid) {
         return forecastRepository.findById(uuid).orElse(null);
-    }
-
-    @Override
-    public Set<Forecast> getForecasts(String clientId) {
-        return kafkaMessagingService.getMessages(clientId);
     }
 
     @PreDestroy
