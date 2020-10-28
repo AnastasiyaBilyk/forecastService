@@ -21,8 +21,6 @@ public class Forecast {
 
     private List<Period> periods;
 
-    public Forecast() {}
-
     public Forecast(UUID uuid, List<Period> periods) {
         this.uuid = uuid;
         this.periods = periods;
