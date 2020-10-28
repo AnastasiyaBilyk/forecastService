@@ -19,9 +19,9 @@ public class ForecastController {
     }
 
     @GetMapping("points/{lat}/{lon}")
-    public UUID getForecast(@PathVariable Double lat, @PathVariable Double lon, @RequestParam(value = "clientId") String clientId) {
+    public UUID getForecast(@PathVariable Double lat, @PathVariable Double lon) {
         UUID uuid = UUID.randomUUID();
-        forecastService.saveForecast(lat, lon, uuid, clientId);
+        forecastService.saveForecast(lat, lon, uuid);
         return uuid;
     }
 
@@ -32,5 +32,10 @@ public class ForecastController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(forecast);
+    }
+
+    @PostMapping("points/{lat}/{lon}")
+    public void addToQueue(@PathVariable Double lat, @PathVariable Double lon, @RequestHeader("Client-Id") String clientId) {
+        forecastService.sendForecastToQueue(lat, lon, clientId);
     }
 }
