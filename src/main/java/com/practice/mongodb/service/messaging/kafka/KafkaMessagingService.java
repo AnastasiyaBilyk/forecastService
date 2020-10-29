@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 
 @Service
-public class KafkaMessagingService implements MessagingService<String, Forecast> {
+public class KafkaMessagingService implements MessagingService<Forecast> {
 
     private final KafkaTemplate<String, Forecast> kafkaTemplate;
 
