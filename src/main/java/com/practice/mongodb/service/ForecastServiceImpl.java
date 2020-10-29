@@ -18,13 +18,13 @@ public class ForecastServiceImpl implements ForecastService {
     private final ForecastRepository forecastRepository;
     private final ExecutorService executorService;
     private final ApiWeatherClient apiWeatherClient;
-    private final MessagingService<String, Forecast> kafkaMessagingService;
+    private final MessagingService<Forecast> kafkaMessagingService;
 
     @Autowired
     public ForecastServiceImpl(ForecastRepository forecastRepository,
                                ExecutorService executorService,
                                ApiWeatherClient apiWeatherClient,
-                               MessagingService<String, Forecast> kafkaMessagingService) {
+                               MessagingService<Forecast> kafkaMessagingService) {
         this.forecastRepository = forecastRepository;
         this.executorService = executorService;
         this.apiWeatherClient = apiWeatherClient;
