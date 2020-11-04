@@ -6,7 +6,6 @@ import java.util.UUID;
 
 public interface ForecastService {
 
-    void saveForecast(double lat, double lon, UUID uuid);
-    void sendForecastToQueue(double lat, double lon, String clientId);
+    void saveForecast(double lat, double lon, UUID uuid, String clientId);
     Forecast getForecast(UUID uuid);
 }

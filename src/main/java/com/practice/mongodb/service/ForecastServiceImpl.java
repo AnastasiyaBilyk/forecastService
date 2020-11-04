@@ -32,23 +32,16 @@ public class ForecastServiceImpl implements ForecastService {
     }
 
     @Override
-    public void saveForecast(double lat, double lon, UUID uuid) {
+    public void saveForecast(double lat, double lon, UUID uuid, String clientId) {
         executorService.submit(() -> {
             try {
-                forecastRepository.save(apiWeatherClient.getForecast(uuid, lat, lon));
+                Forecast forecast = apiWeatherClient.getForecast(uuid, lat, lon);
+                forecastRepository.save(forecast);
+                kafkaMessagingService.sendToQueue(clientId, forecast);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-    }
-
-    @Override
-    public void sendForecastToQueue(double lat, double lon, String clientId) {
-        try {
-            kafkaMessagingService.sendToQueue(clientId, apiWeatherClient.getForecast(UUID.randomUUID(), lat, lon) );
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
