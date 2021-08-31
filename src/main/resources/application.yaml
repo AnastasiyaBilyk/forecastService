@@ -21,3 +21,8 @@ server:
     tomcat:
         threads:
             max: 200
+
+jwt:
+    token:
+        secret: testsecret
+        expired: 60000
